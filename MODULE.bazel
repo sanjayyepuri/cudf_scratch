@@ -1,0 +1,11 @@
+module(name = "cudf_parquet_hello")
+
+bazel_dep(name = "rules_cc", version = "0.2.25")
+bazel_dep(name = "platforms", version = "1.1.0")
+bazel_dep(name = "llvm", version = "0.8.24")
+bazel_dep(name = "zlib", version = "1.3.1.bcr.5")
+
+register_toolchains("@llvm//toolchain:all")
+
+libcudf = use_repo_rule("//:libcudf.bzl", "libcudf_repository")
+libcudf(name = "libcudf", sources = "//:sdk-sources.json")

@@ -1,0 +1,36 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_shared_library")
+
+# NVIDIA's prebuilt libcudf uses the GNU C++ ABI, rather than libc++.
+platform(
+    name = "linux_x86_64",
+    constraint_values = [
+        "@platforms//os:linux",
+        "@platforms//cpu:x86_64",
+        "@llvm//constraints/libc:gnu.2.28",
+        "@llvm//constraints/cxxstdlib:libstdcxx.14.3.0",
+    ],
+)
+
+# libcudf requires libz.so.1 at runtime. Build it with the same pinned toolchain.
+cc_shared_library(
+    name = "zlib_shared",
+    features = ["-static_link_cpp_runtimes"],
+    deps = ["@zlib//:zlib"],
+    shared_lib_name = "libz.so.1",
+    additional_linker_inputs = ["zlib.map"],
+    user_link_flags = [
+        "-Wl,-soname,libz.so.1",
+        "-Wl,--version-script=$(location zlib.map)",
+    ],
+)
+
+cc_binary(
+    name = "hello",
+    srcs = ["main.cc"],
+    copts = ["-std=c++20"],
+    # Inherited RPATH lets libcudf find its transitive CUDA shared libraries.
+    linkopts = ["-ldl", "-Wl,--disable-new-dtags"],
+    linkstatic = False,
+    deps = ["@libcudf", "@zlib//:zlib"],
+    dynamic_deps = [":zlib_shared"],
+)
