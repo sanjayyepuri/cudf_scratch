@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/mnt/c/users/sanja/documents/codex/2026-10-17/i-qwo/outputs/cudf-parquet-hello/bazel-bin/subpass_benchmark",
+    "3",
+    "/tmp/cudf-subpass-data/integers-zstd.parquet",
+    "0:0",
+    "16777216:0",
+    "67108864:0",
+    "67108864:8388608",
+    "67108864:33554432",
+    "67108864:134217728",
+    "268435456:0",
+    "536870912:0"
+  ],
+  "repeats": 3,
+  "warmups": 1,
+  "allocator": "RMM statistics adaptor over original default cuda_memory_resource; no pool",
+  "device_probe": "cudaMemGetInfo, requested 1 ms polling interval; device-wide sampled usage, not physical-residency proof",
+  "timing": "Keep original uninstrumented baseline; memory-run timings include probe overhead"
+}

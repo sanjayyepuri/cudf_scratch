@@ -1,0 +1,11 @@
+name: sdk
+channels:
+  - rapidsai
+  - conda-forge
+dependencies:
+  - libcudf=26.10
+  - cuda-version=12.9
+  - cuda-cudart-dev
+  - cuda-nvcc-dev_linux-64
+platforms:
+  - linux-64

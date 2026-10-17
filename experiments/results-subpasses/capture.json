@@ -1,0 +1,33 @@
+{
+  "command": [
+    "/tmp/cudf-profiling/nsight/opt/nvidia/nsight-systems/2026.3.2/bin/nsys",
+    "profile",
+    "--trace=cuda-sw,nvtx",
+    "--sample=none",
+    "--cpuctxsw=none",
+    "--capture-range=nvtx",
+    "--nvtx-capture=measured",
+    "--capture-range-end=stop",
+    "--force-overwrite=true",
+    "--output=/mnt/c/users/sanja/documents/codex/2026-10-17/i-qwo/outputs/cudf-parquet-hello/experiments/traces/subpasses",
+    "/mnt/c/users/sanja/documents/codex/2026-10-17/i-qwo/outputs/cudf-parquet-hello/bazel-bin/subpass_benchmark",
+    "2",
+    "/tmp/cudf-subpass-data/integers-zstd.parquet",
+    "0:0",
+    "16777216:0",
+    "67108864:0",
+    "67108864:8388608",
+    "67108864:33554432",
+    "67108864:134217728",
+    "268435456:0",
+    "536870912:0"
+  ],
+  "nsys": "NVIDIA Nsight Systems version 2026.3.2.476-263238834031v0",
+  "gpu": "NVIDIA GeForce RTX 3090, 610.88",
+  "baseline_repeats": 5,
+  "trace_repeats": 2,
+  "verified_baseline": 40,
+  "verified_profiled": 16,
+  "subpass_marker": "preprocess_subpass_pages",
+  "input_pass_proxy": "count_page_headers_kernel launches; one per input pass on this fixture without page indexes"
+}

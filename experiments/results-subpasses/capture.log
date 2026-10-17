@@ -1,0 +1,98 @@
+pass_limit,chunk_limit,iteration,rows,sum,columns,output_chunks,max_chunk_rows,read_ms,sum_ms,total_ms
+16777216,0,1,33554432,1677479147194,3,248,262144,6656.04,81.9822,6807.68
+67108864,0,1,33554432,1677479147194,3,32,1310720,1038.76,11.9712,1073.37
+67108864,134217728,1,33554432,1677479147194,3,32,1310720,1060.68,10.247,1093.97
+268435456,0,1,33554432,1677479147194,3,12,4063232,473.986,4.77033,488.718
+67108864,8388608,1,33554432,1677479147194,3,128,393216,1305.07,45.4165,1418.23
+67108864,33554432,1,33554432,1677479147194,3,32,1310720,1059.6,14.0332,1097.9
+536870912,0,1,33554432,1677479147194,3,6,7995392,306.096,2.63871,316.107
+0,0,1,33554432,1677479147194,3,1,33554432,158.449,0.969601,167.123
+536870912,0,2,33554432,1677479147194,3,6,7995392,301.137,2.20107,309.3
+268435456,0,2,33554432,1677479147194,3,12,4063232,482.897,6.48359,499.903
+16777216,0,2,33554432,1677479147194,3,248,262144,6622.26,89.9468,6781.47
+67108864,134217728,2,33554432,1677479147194,3,32,1310720,1049.86,11.3187,1084.9
+67108864,33554432,2,33554432,1677479147194,3,32,1310720,1054.9,10.8709,1089.23
+0,0,2,33554432,1677479147194,3,1,33554432,152.99,0.797395,160.232
+67108864,8388608,2,33554432,1677479147194,3,128,393216,1298.26,44.9004,1409.69
+Capture range started in the application.
+Capture range ended in the application.
+Generating '/tmp/nsys-sanjay/nsys-report-b972.qdstrm'
+
+[1/1] [0%                          ] subpasses.nsys-repProcessing events...
+
+[1/1] [0%                          ] subpasses.nsys-rep
+[1/1] [1%                          ] subpasses.nsys-rep
+[1/1] [2%                          ] subpasses.nsys-rep
+[1/1] [5%                          ] subpasses.nsys-rep
+[1/1] [6%                          ] subpasses.nsys-rep
+[1/1] [7%                          ] subpasses.nsys-rep
+[1/1] [8%                          ] subpasses.nsys-rep
+[1/1] [9%                          ] subpasses.nsys-rep
+[1/1] [10%                         ] subpasses.nsys-rep
+[1/1] [11%                         ] subpasses.nsys-rep
+[1/1] [12%                         ] subpasses.nsys-rep
+[1/1] [13%                         ] subpasses.nsys-rep
+[1/1] [14%                         ] subpasses.nsys-rep
+[1/1] [=15%                        ] subpasses.nsys-rep
+[1/1] [=16%                        ] subpasses.nsys-rep
+[1/1] [=17%                        ] subpasses.nsys-rep
+[1/1] [==18%                       ] subpasses.nsys-rep
+[1/1] [==19%                       ] subpasses.nsys-rep
+[1/1] [==20%                       ] subpasses.nsys-rep
+[1/1] [=================72%        ] subpasses.nsys-rep
+[1/1] [====================83%     ] subpasses.nsys-rep
+[1/1] [=======================96%  ] subpasses.nsys-rep
+[1/1] [========================98% ] subpasses.nsys-rep
+[1/1] [========================100%] subpasses.nsys-rep
+[1/1] [========================100%] subpasses.nsys-rep
+67108864,0,2,33554432,1677479147194,3,32,1310720,1031.41,10.8316,1065.7
+Generated:
+	/mnt/c/users/sanja/documents/codex/2026-10-17/i-qwo/outputs/cudf-parquet-hello/experiments/traces/subpasses.nsys-rep
+begin warmup:16777216:0:0
+done warmup:16777216:0:0 rows=33554432 chunks=248 ms=8188.8
+begin warmup:268435456:0:0
+done warmup:268435456:0:0 rows=33554432 chunks=12 ms=472.255
+begin warmup:536870912:0:0
+done warmup:536870912:0:0 rows=33554432 chunks=6 ms=302.325
+begin warmup:0:0:0
+done warmup:0:0:0 rows=33554432 chunks=1 ms=162.398
+begin warmup:67108864:134217728:0
+done warmup:67108864:134217728:0 rows=33554432 chunks=32 ms=1051.74
+begin warmup:67108864:33554432:0
+done warmup:67108864:33554432:0 rows=33554432 chunks=32 ms=1055.06
+begin warmup:67108864:8388608:0
+done warmup:67108864:8388608:0 rows=33554432 chunks=128 ms=1344.91
+begin warmup:67108864:0:0
+done warmup:67108864:0:0 rows=33554432 chunks=32 ms=1048.75
+begin sample:16777216:0:1
+done sample:16777216:0:1 rows=33554432 chunks=248 ms=6807.68
+begin sample:67108864:0:1
+done sample:67108864:0:1 rows=33554432 chunks=32 ms=1073.37
+begin sample:67108864:134217728:1
+done sample:67108864:134217728:1 rows=33554432 chunks=32 ms=1093.97
+begin sample:268435456:0:1
+done sample:268435456:0:1 rows=33554432 chunks=12 ms=488.718
+begin sample:67108864:8388608:1
+done sample:67108864:8388608:1 rows=33554432 chunks=128 ms=1418.23
+begin sample:67108864:33554432:1
+done sample:67108864:33554432:1 rows=33554432 chunks=32 ms=1097.9
+begin sample:536870912:0:1
+done sample:536870912:0:1 rows=33554432 chunks=6 ms=316.107
+begin sample:0:0:1
+done sample:0:0:1 rows=33554432 chunks=1 ms=167.123
+begin sample:536870912:0:2
+done sample:536870912:0:2 rows=33554432 chunks=6 ms=309.3
+begin sample:268435456:0:2
+done sample:268435456:0:2 rows=33554432 chunks=12 ms=499.903
+begin sample:16777216:0:2
+done sample:16777216:0:2 rows=33554432 chunks=248 ms=6781.47
+begin sample:67108864:134217728:2
+done sample:67108864:134217728:2 rows=33554432 chunks=32 ms=1084.9
+begin sample:67108864:33554432:2
+done sample:67108864:33554432:2 rows=33554432 chunks=32 ms=1089.23
+begin sample:0:0:2
+done sample:0:0:2 rows=33554432 chunks=1 ms=160.232
+begin sample:67108864:8388608:2
+done sample:67108864:8388608:2 rows=33554432 chunks=128 ms=1409.69
+begin sample:67108864:0:2
+done sample:67108864:0:2 rows=33554432 chunks=32 ms=1065.7

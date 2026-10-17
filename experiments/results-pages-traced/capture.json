@@ -1,0 +1,30 @@
+{
+  "nsys_version": "NVIDIA Nsight Systems version 2026.3.2.476-263238834031v0",
+  "command": [
+    "/tmp/cudf-profiling/nsight/opt/nvidia/nsight-systems/2026.3.2/bin/nsys",
+    "profile",
+    "--trace=cuda-sw,nvtx",
+    "--sample=none",
+    "--cpuctxsw=none",
+    "--capture-range=nvtx",
+    "--nvtx-capture=measured",
+    "--capture-range-end=stop",
+    "--force-overwrite=true",
+    "--output=/mnt/c/users/sanja/documents/codex/2026-10-17/i-qwo/outputs/cudf-parquet-hello/experiments/traces/pages",
+    "/mnt/c/users/sanja/documents/codex/2026-10-17/i-qwo/outputs/cudf-parquet-hello/bazel-bin/layout_benchmark",
+    "5",
+    "/tmp/cudf-layout-pages/rg2097152_page16384.parquet",
+    "/tmp/cudf-layout-pages/rg2097152_page65536.parquet",
+    "/tmp/cudf-layout-pages/rg2097152_page262144.parquet",
+    "/tmp/cudf-layout-pages/rg2097152_page1048576.parquet",
+    "/tmp/cudf-layout-pages/rg2097152_page16777216.parquet"
+  ],
+  "repeats": 5,
+  "baseline_manifest": "/mnt/c/users/sanja/documents/codex/2026-10-17/i-qwo/outputs/cudf-parquet-hello/experiments/results-pages/manifest.json",
+  "trace_file": "/mnt/c/users/sanja/documents/codex/2026-10-17/i-qwo/outputs/cudf-parquet-hello/experiments/traces/pages.nsys-rep",
+  "sqlite_file": "/mnt/c/users/sanja/documents/codex/2026-10-17/i-qwo/outputs/cudf-parquet-hello/experiments/traces/pages.sqlite",
+  "verified_samples": 25,
+  "kernel_events": 875,
+  "memcpy_events": 1425,
+  "hardware_counters": "Not requested; deferred by user. Counter probe reported insufficient privilege."
+}

@@ -1,0 +1,29 @@
+{
+  "file": "/tmp/cudf-subpass-data/integers-zstd.parquet",
+  "rows": 33554432,
+  "row_group_rows": 4194304,
+  "row_groups": 8,
+  "expected_sum": 1677479147194,
+  "columns": 3,
+  "seed": 42,
+  "codec": "ZSTD",
+  "compression_level": 3,
+  "page_target_bytes": 1048576,
+  "dictionary_columns": [],
+  "nulls": false,
+  "fixed_width_decoded_bytes": 671088640,
+  "file_bytes": 263840420,
+  "pyarrow": "19.0.1",
+  "numpy": "2.2.6",
+  "kernel": "5.15.146.1-microsoft-standard-WSL2",
+  "row_group_compressed_bytes": [
+    32979033,
+    32977878,
+    32979142,
+    32979730,
+    32979827,
+    32980386,
+    32980772,
+    32980756
+  ]
+}

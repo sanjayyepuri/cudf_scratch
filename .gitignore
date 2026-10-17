@@ -1,1 +1,7 @@
 bazel-*
+experiments/traces/*
+!experiments/traces/pages.nsys-rep.gz
+!experiments/traces/pages.sqlite.gz
+!experiments/traces/subpasses.nsys-rep.gz
+!experiments/traces/subpasses.sqlite.gz
+experiments/__pycache__/

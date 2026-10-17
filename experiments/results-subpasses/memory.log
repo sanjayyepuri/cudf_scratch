@@ -1,0 +1,64 @@
+begin warmup:16777216:0:0
+done warmup:16777216:0:0 rows=33554432 chunks=248 ms=6640.09
+begin warmup:268435456:0:0
+done warmup:268435456:0:0 rows=33554432 chunks=12 ms=446.726
+begin warmup:536870912:0:0
+done warmup:536870912:0:0 rows=33554432 chunks=6 ms=285.214
+begin warmup:0:0:0
+done warmup:0:0:0 rows=33554432 chunks=1 ms=153.944
+begin warmup:67108864:134217728:0
+done warmup:67108864:134217728:0 rows=33554432 chunks=32 ms=981.044
+begin warmup:67108864:33554432:0
+done warmup:67108864:33554432:0 rows=33554432 chunks=32 ms=992.997
+begin warmup:67108864:8388608:0
+done warmup:67108864:8388608:0 rows=33554432 chunks=128 ms=1265.25
+begin warmup:67108864:0:0
+done warmup:67108864:0:0 rows=33554432 chunks=32 ms=976.083
+begin sample:16777216:0:1
+done sample:16777216:0:1 rows=33554432 chunks=248 ms=6037.28
+begin sample:67108864:0:1
+done sample:67108864:0:1 rows=33554432 chunks=32 ms=962.761
+begin sample:67108864:134217728:1
+done sample:67108864:134217728:1 rows=33554432 chunks=32 ms=973.567
+begin sample:268435456:0:1
+done sample:268435456:0:1 rows=33554432 chunks=12 ms=444.728
+begin sample:67108864:8388608:1
+done sample:67108864:8388608:1 rows=33554432 chunks=128 ms=1244.94
+begin sample:67108864:33554432:1
+done sample:67108864:33554432:1 rows=33554432 chunks=32 ms=992.401
+begin sample:536870912:0:1
+done sample:536870912:0:1 rows=33554432 chunks=6 ms=284.831
+begin sample:0:0:1
+done sample:0:0:1 rows=33554432 chunks=1 ms=153.718
+begin sample:536870912:0:2
+done sample:536870912:0:2 rows=33554432 chunks=6 ms=284.733
+begin sample:268435456:0:2
+done sample:268435456:0:2 rows=33554432 chunks=12 ms=443.713
+begin sample:16777216:0:2
+done sample:16777216:0:2 rows=33554432 chunks=248 ms=6050.39
+begin sample:67108864:134217728:2
+done sample:67108864:134217728:2 rows=33554432 chunks=32 ms=1016.39
+begin sample:67108864:33554432:2
+done sample:67108864:33554432:2 rows=33554432 chunks=32 ms=975.537
+begin sample:0:0:2
+done sample:0:0:2 rows=33554432 chunks=1 ms=153.723
+begin sample:67108864:8388608:2
+done sample:67108864:8388608:2 rows=33554432 chunks=128 ms=1252.28
+begin sample:67108864:0:2
+done sample:67108864:0:2 rows=33554432 chunks=32 ms=985.604
+begin sample:268435456:0:3
+done sample:268435456:0:3 rows=33554432 chunks=12 ms=454.551
+begin sample:0:0:3
+done sample:0:0:3 rows=33554432 chunks=1 ms=151.419
+begin sample:67108864:0:3
+done sample:67108864:0:3 rows=33554432 chunks=32 ms=971.938
+begin sample:16777216:0:3
+done sample:16777216:0:3 rows=33554432 chunks=248 ms=6088.44
+begin sample:67108864:33554432:3
+done sample:67108864:33554432:3 rows=33554432 chunks=32 ms=984.687
+begin sample:67108864:134217728:3
+done sample:67108864:134217728:3 rows=33554432 chunks=32 ms=995.13
+begin sample:536870912:0:3
+done sample:536870912:0:3 rows=33554432 chunks=6 ms=288.694
+begin sample:67108864:8388608:3
+done sample:67108864:8388608:3 rows=33554432 chunks=128 ms=1240.79

@@ -1,6 +1,8 @@
-load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_shared_library")
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+load("@rules_conda//conda/environment:defs.bzl", "environment_glob", "lock_environments")
+load("//:sdk.bzl", "SDK_REPO", "SDK_ROOT")
 
-# NVIDIA's prebuilt libcudf uses the GNU C++ ABI, rather than libc++.
+# NVIDIA's prebuilt libcudf uses the GNU C++ ABI.
 platform(
     name = "linux_x86_64",
     constraint_values = [
@@ -11,26 +13,85 @@ platform(
     ],
 )
 
-# libcudf requires libz.so.1 at runtime. Build it with the same pinned toolchain.
-cc_shared_library(
-    name = "zlib_shared",
-    features = ["-static_link_cpp_runtimes"],
-    deps = ["@zlib//:zlib"],
-    shared_lib_name = "libz.so.1",
-    additional_linker_inputs = ["zlib.map"],
-    user_link_flags = [
-        "-Wl,-soname,libz.so.1",
-        "-Wl,--version-script=$(location zlib.map)",
+lock_environments(
+    name = "deps",
+    environments = ["environment.yml"],
+    cuda_version = "12.9",
+    glibc_version = "2.28",
+)
+
+# rules_conda supplies the locked SDK; standard C++ rules expose its files.
+environment_glob(
+    name = "sdk_headers",
+    environment = "@sdk",
+    srcs = ["include/**", "targets/x86_64-linux/include/**"],
+)
+
+environment_glob(
+    name = "sdk_libraries",
+    environment = "@sdk",
+    srcs = ["lib/*.so*"],
+)
+
+cc_library(
+    name = "libcudf",
+    hdrs = [":sdk_headers"],
+    srcs = [
+        "@sdk//:lib/libcudf.so",
+        "@sdk//:lib/librmm.so",
+        "@sdk//:lib/libcudart.so",
+        "@sdk//:lib/libstdc++.so.6",
+        "@sdk//:lib/libgcc_s.so.1",
+    ],
+    data = [":sdk_libraries"],
+    includes = [
+        SDK_ROOT + "/include/rapids",
+        SDK_ROOT + "/include",
+        SDK_ROOT + "/targets/x86_64-linux/include",
     ],
 )
 
 cc_binary(
     name = "hello",
+    # Match the SDK's prebuilt GNU ABI, including its _Float128 symbols.
+    features = ["-static_link_cpp_runtimes"],
     srcs = ["main.cc"],
     copts = ["-std=c++20"],
-    # Inherited RPATH lets libcudf find its transitive CUDA shared libraries.
-    linkopts = ["-ldl", "-Wl,--disable-new-dtags"],
+    # Find transitive SDK libraries without linking optional test/sanitizer plugins.
+    linkopts = [
+        "-ldl",
+        "-Wl,--disable-new-dtags",
+        "-Wl,-rpath,$ORIGIN/hello.runfiles/" + SDK_REPO + "/lib",
+    ],
     linkstatic = False,
-    deps = ["@libcudf", "@zlib//:zlib"],
-    dynamic_deps = [":zlib_shared"],
+    deps = [":libcudf"],
+)
+
+# Separate timing driver keeps the hello-world program minimal.
+cc_binary(
+    name = "layout_benchmark",
+    features = ["-static_link_cpp_runtimes"],
+    srcs = ["layout_benchmark.cc"],
+    copts = ["-std=c++20"],
+    linkopts = [
+        "-ldl",
+        "-Wl,--disable-new-dtags",
+        "-Wl,-rpath,$ORIGIN/layout_benchmark.runfiles/" + SDK_REPO + "/lib",
+    ],
+    linkstatic = False,
+    deps = [":libcudf"],
+)
+
+cc_binary(
+    name = "subpass_benchmark",
+    features = ["-static_link_cpp_runtimes"],
+    srcs = ["subpass_benchmark.cc"],
+    copts = ["-std=c++20"],
+    linkopts = [
+        "-ldl",
+        "-Wl,--disable-new-dtags",
+        "-Wl,-rpath,$ORIGIN/subpass_benchmark.runfiles/" + SDK_REPO + "/lib",
+    ],
+    linkstatic = False,
+    deps = [":libcudf"],
 )

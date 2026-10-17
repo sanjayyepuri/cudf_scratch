@@ -1,0 +1,96 @@
+begin warmup:16777216:0:0
+done warmup:16777216:0:0 rows=33554432 chunks=248 ms=7398.04
+begin warmup:268435456:0:0
+done warmup:268435456:0:0 rows=33554432 chunks=12 ms=472.103
+begin warmup:536870912:0:0
+done warmup:536870912:0:0 rows=33554432 chunks=6 ms=300.431
+begin warmup:0:0:0
+done warmup:0:0:0 rows=33554432 chunks=1 ms=157.516
+begin warmup:67108864:134217728:0
+done warmup:67108864:134217728:0 rows=33554432 chunks=32 ms=1050.23
+begin warmup:67108864:33554432:0
+done warmup:67108864:33554432:0 rows=33554432 chunks=32 ms=1053.67
+begin warmup:67108864:8388608:0
+done warmup:67108864:8388608:0 rows=33554432 chunks=128 ms=1340.58
+begin warmup:67108864:0:0
+done warmup:67108864:0:0 rows=33554432 chunks=32 ms=1054.26
+begin sample:16777216:0:1
+done sample:16777216:0:1 rows=33554432 chunks=248 ms=6518.12
+begin sample:67108864:0:1
+done sample:67108864:0:1 rows=33554432 chunks=32 ms=1024.69
+begin sample:67108864:134217728:1
+done sample:67108864:134217728:1 rows=33554432 chunks=32 ms=1052.02
+begin sample:268435456:0:1
+done sample:268435456:0:1 rows=33554432 chunks=12 ms=481.557
+begin sample:67108864:8388608:1
+done sample:67108864:8388608:1 rows=33554432 chunks=128 ms=1339.24
+begin sample:67108864:33554432:1
+done sample:67108864:33554432:1 rows=33554432 chunks=32 ms=1056.93
+begin sample:536870912:0:1
+done sample:536870912:0:1 rows=33554432 chunks=6 ms=304.622
+begin sample:0:0:1
+done sample:0:0:1 rows=33554432 chunks=1 ms=162.551
+begin sample:536870912:0:2
+done sample:536870912:0:2 rows=33554432 chunks=6 ms=314.347
+begin sample:268435456:0:2
+done sample:268435456:0:2 rows=33554432 chunks=12 ms=478.663
+begin sample:16777216:0:2
+done sample:16777216:0:2 rows=33554432 chunks=248 ms=6585.67
+begin sample:67108864:134217728:2
+done sample:67108864:134217728:2 rows=33554432 chunks=32 ms=1080.8
+begin sample:67108864:33554432:2
+done sample:67108864:33554432:2 rows=33554432 chunks=32 ms=1055.31
+begin sample:0:0:2
+done sample:0:0:2 rows=33554432 chunks=1 ms=160.698
+begin sample:67108864:8388608:2
+done sample:67108864:8388608:2 rows=33554432 chunks=128 ms=1333.45
+begin sample:67108864:0:2
+done sample:67108864:0:2 rows=33554432 chunks=32 ms=1026.38
+begin sample:268435456:0:3
+done sample:268435456:0:3 rows=33554432 chunks=12 ms=466.954
+begin sample:0:0:3
+done sample:0:0:3 rows=33554432 chunks=1 ms=158.048
+begin sample:67108864:0:3
+done sample:67108864:0:3 rows=33554432 chunks=32 ms=1031.34
+begin sample:16777216:0:3
+done sample:16777216:0:3 rows=33554432 chunks=248 ms=6566.53
+begin sample:67108864:33554432:3
+done sample:67108864:33554432:3 rows=33554432 chunks=32 ms=1069.86
+begin sample:67108864:134217728:3
+done sample:67108864:134217728:3 rows=33554432 chunks=32 ms=1070.37
+begin sample:536870912:0:3
+done sample:536870912:0:3 rows=33554432 chunks=6 ms=303.171
+begin sample:67108864:8388608:3
+done sample:67108864:8388608:3 rows=33554432 chunks=128 ms=1335.8
+begin sample:67108864:0:4
+done sample:67108864:0:4 rows=33554432 chunks=32 ms=1046.94
+begin sample:16777216:0:4
+done sample:16777216:0:4 rows=33554432 chunks=248 ms=6557.15
+begin sample:268435456:0:4
+done sample:268435456:0:4 rows=33554432 chunks=12 ms=474.981
+begin sample:67108864:134217728:4
+done sample:67108864:134217728:4 rows=33554432 chunks=32 ms=1062.9
+begin sample:67108864:8388608:4
+done sample:67108864:8388608:4 rows=33554432 chunks=128 ms=1355.85
+begin sample:67108864:33554432:4
+done sample:67108864:33554432:4 rows=33554432 chunks=32 ms=1056.18
+begin sample:0:0:4
+done sample:0:0:4 rows=33554432 chunks=1 ms=158.876
+begin sample:536870912:0:4
+done sample:536870912:0:4 rows=33554432 chunks=6 ms=304.225
+begin sample:536870912:0:5
+done sample:536870912:0:5 rows=33554432 chunks=6 ms=300.119
+begin sample:67108864:0:5
+done sample:67108864:0:5 rows=33554432 chunks=32 ms=1037.26
+begin sample:16777216:0:5
+done sample:16777216:0:5 rows=33554432 chunks=248 ms=6550.97
+begin sample:268435456:0:5
+done sample:268435456:0:5 rows=33554432 chunks=12 ms=474.321
+begin sample:67108864:8388608:5
+done sample:67108864:8388608:5 rows=33554432 chunks=128 ms=1365.43
+begin sample:0:0:5
+done sample:0:0:5 rows=33554432 chunks=1 ms=170.233
+begin sample:67108864:33554432:5
+done sample:67108864:33554432:5 rows=33554432 chunks=32 ms=1070.75
+begin sample:67108864:134217728:5
+done sample:67108864:134217728:5 rows=33554432 chunks=32 ms=1068.61
