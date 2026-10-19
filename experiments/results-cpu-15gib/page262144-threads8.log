@@ -1,0 +1,8 @@
+begin iteration=0 threads=8
+done iteration=0 ms=9090.39
+begin iteration=1 threads=8
+done iteration=1 ms=8777.8
+begin iteration=2 threads=8
+done iteration=2 ms=8031.46
+begin iteration=3 threads=8
+done iteration=3 ms=7203.86

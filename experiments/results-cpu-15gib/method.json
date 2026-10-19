@@ -1,0 +1,14 @@
+{
+  "cpu_model": "AMD Ryzen 9 3950X 16-Core Processor",
+  "available_logical_cpus": 32,
+  "kernel": "5.15.146.1-microsoft-standard-WSL2",
+  "arrow": "19.0.1",
+  "repeats": 3,
+  "excluded_warmups": 1,
+  "verified_samples": 24,
+  "implementation": "Native C++ Arrow Parquet reader and reductions. Independent reader per fixed worker; nested Arrow thread pools and prebuffering disabled.",
+  "batching": "At most one row group per worker in a wave; parallel read then parallel sum, then release tables. Page workloads use eight workers to bound host RAM.",
+  "cache": "No flush or residency guarantee. Exact same files as GPU; all CPU runs occur after GPU runs finish.",
+  "memory": "process_peak_rss_bytes is the process lifetime high-water mark, including warm-up and allocator caches; not comparable to RMM live allocations.",
+  "comparison": "Use total_ms (read+sum+cleanup), including worker setup. Different libraries and batching policies: a baseline, not an optimized best-CPU claim."
+}

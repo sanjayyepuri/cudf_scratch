@@ -10,3 +10,22 @@ register_toolchains("@llvm//toolchain:all")
 conda = use_extension("@rules_conda//conda:extensions.bzl", "conda")
 conda.environment(name = "sdk", lockfile = "//:conda.lock", platform = "linux-64")
 use_repo(conda, "sdk")
+
+# Pinned Arrow C++ libraries; the CPU executable does not load Python or CUDA.
+http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+http_archive(
+    name = "arrow_cpu",
+    urls = ["https://files.pythonhosted.org/packages/27/2e/29bb28a7102a6f71026a9d70d1d61df926887e36ec797f2e6acfd2dd3867/pyarrow-19.0.1-cp312-cp312-manylinux_2_28_x86_64.whl"],
+    sha256 = "b4c4156a625f1e35d6c0b2132635a237708944eb41df5fbe7d50f20d20c17832",
+    type = "zip",
+    build_file_content = """
+load("@rules_cc//cc:defs.bzl", "cc_library")
+cc_library(
+    name = "arrow",
+    hdrs = glob(["pyarrow/include/**"]),
+    srcs = ["pyarrow/libarrow.so.1900", "pyarrow/libparquet.so.1900"],
+    includes = ["pyarrow/include"],
+    visibility = ["//visibility:public"],
+)
+""",
+)
