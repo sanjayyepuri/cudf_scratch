@@ -32,6 +32,7 @@ def main():
     if not args.analyze_only:
         env = dict(os.environ, CUDF_MEMORY='1', KVIKIO_COMPAT_MODE='ON')
         env.pop('CUDF_PROFILE', None)
+        env.pop('CUDF_BENCH_SINGLE_COLUMN', None)
         with (output/'memory-samples.csv').open('w') as raw, (output/'memory.log').open('w') as log:
             subprocess.run(command, env=env, stdout=raw, stderr=log, check=True)
         (output/'memory-capture.json').write_text(json.dumps(dict(
@@ -81,9 +82,17 @@ def main():
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
-    fig, axes = plt.subplots(1, 2, figsize=(12, 4.8), constrained_layout=True)
-    for ax, rows, title in ((axes[0], [r for r in summary if r['chunk_limit_mib']=='0'], 'Pass hint sweep; output unlimited'),
-                            (axes[1], [r for r in summary if r['pass_limit_mib']=='64'], 'Output hint sweep; pass hint 64 MiB')):
+    primary = [r for r in summary if r['chunk_limit_mib']=='0']
+    secondary = [r for r in summary if r['pass_limit_mib']=='64']
+    has_output_sweep = len({r['chunk_limit_mib'] for r in secondary}) > 1
+    fig, axes = plt.subplots(1, 2 if has_output_sweep else 1,
+                             figsize=(12 if has_output_sweep else 7.5, 4.8),
+                             constrained_layout=True, squeeze=False)
+    axes = axes[0]
+    panels = [(axes[0], primary, 'Pass hint sweep; output unlimited')]
+    if has_output_sweep:
+        panels.append((axes[1], secondary, 'Output hint sweep; pass hint 64 MiB'))
+    for ax, rows, title in panels:
         for r in rows:
             x = r['rmm_peak_bytes_median']/MiB
             y = float(r['read_ms_median'])

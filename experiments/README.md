@@ -241,3 +241,38 @@ gzip -dk experiments/traces/*.gz
 
 This keeps the archives and recreates the original Nsight reports and SQLite
 exports. The experiment scripts also regenerate the uncompressed captures.
+
+## 15 GiB article refresh
+
+[Large-scale methodology and commands](LARGE_SCALE.md) describe the compressed
+memory-hint sweep and uncompressed Page-size sweep. Both contain 15 GiB of decoded
+values; compressed disk size is smaller. New results are written separately under
+`results-large-15gib/` and `results-large-pages-15gib/`, preserving the original runs.
+The large Page study uses a bounded chunked reader rather than the original
+whole-file API; compare settings within a workload instead of treating absolute
+latency across scales as an isolated size effect.
+
+## Native C++ CPU baseline
+
+The CPU benchmark reads the exact large-scale files with Arrow C++ 19.0.1 and
+sums amount. The pinned wheel is used only as an archive of native headers and
+libraries: the executable does not require Python or CUDA. GNU runtime libraries
+come from the existing locked SDK. The CPU and GPU benchmarks use the same LLVM
+toolchain.
+
+```bash
+bazelisk build //:cpu_benchmark
+/tmp/cudf-layout-venv/bin/python experiments/cpu_baseline.py
+/tmp/cudf-layout-venv/bin/python experiments/cpu_report.py
+```
+
+Run this after the GPU sweeps finish. Each fixed CPU worker owns a Parquet reader;
+nested Arrow threading and prebuffering are disabled. Decoding and summation run
+in separate parallel phases, with one row group per worker held in each wave.
+The default compressed tests use 1, 8 and 32 workers; Page fixtures use 8 to bound
+host memory. Override with `--compressed-threads` and `--page-threads`.
+
+[CPU results and comparison method](results-cpu-15gib/report.md) compare total wall
+time against the GPU's fixed 2 GiB pass hint, including sum and cleanup on both.
+Do not compare CPU total directly to the earlier reader-only GPU timings. CPU
+RSS includes allocator caches and is not the same metric as live RMM allocations.

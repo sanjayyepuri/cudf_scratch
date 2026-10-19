@@ -104,6 +104,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--group-rows',type=int,default=4_194_304)
     parser.add_argument('--groups',type=int,default=8)
+    parser.add_argument('--pass-limits-mib',type=int,nargs='+',default=[0,16,64,256,512])
+    parser.add_argument('--output-limits-mib',type=int,nargs='+',default=[0,8,32,128])
+    parser.add_argument('--output-pass-mib',type=int,default=64)
     parser.add_argument('--repeats',type=int,default=5)
     parser.add_argument('--trace-repeats',type=int,default=2)
     parser.add_argument('--generate-only',action='store_true')
@@ -113,6 +116,8 @@ def main():
     parser.add_argument('--output',type=Path,default=ROOT/'experiments/results-subpasses')
     parser.add_argument('--nsys',type=Path,default=Path('/tmp/cudf-profiling/nsight/opt/nvidia/nsight-systems/2026.3.2/bin/nsys'))
     args = parser.parse_args()
+    if min(args.pass_limits_mib+args.output_limits_mib+[args.output_pass_mib])<0:
+        parser.error('memory hints must be nonnegative')
     if min(args.group_rows,args.groups,args.repeats,args.trace_repeats)<1:
         parser.error('sizes and repetitions must be positive')
     args.data_dir.mkdir(parents=True,exist_ok=True); args.output.mkdir(parents=True,exist_ok=True)
@@ -129,12 +134,14 @@ def main():
     if args.generate_only:
         print(json.dumps(fixture,indent=2)); return
     # Vary one limit at a time; shared 64:0 case connects the two sweeps.
-    configs = sorted({(p*MiB,0) for p in (0,16,64,256,512)} |
-                     {(64*MiB,c*MiB) for c in (0,8,32,128)})
+    configs = sorted({(p*MiB,0) for p in args.pass_limits_mib} |
+                     {(args.output_pass_mib*MiB,c*MiB) for c in args.output_limits_mib})
     binary = ROOT/'bazel-bin/subpass_benchmark'
     limits = [f'{p}:{c}' for p,c in configs]
     env = dict(os.environ,KVIKIO_COMPAT_MODE='ON')
     env.pop('CUDF_PROFILE',None)
+    env.pop('CUDF_MEMORY',None)
+    env.pop('CUDF_BENCH_SINGLE_COLUMN',None)
     with (args.output/'baseline.log').open('w') as log, (args.output/'baseline-raw.csv').open('w') as raw:
         measured = subprocess.run([str(binary),str(args.repeats),str(file.resolve()),*limits],
                                   env=env,text=True,stdout=raw,stderr=log)
@@ -144,7 +151,7 @@ def main():
     print(f'{len(samples)} baseline sums verified',flush=True)
     if args.baseline_only:
         return
-    trace = ROOT/'experiments/traces/subpasses';trace.parent.mkdir(parents=True,exist_ok=True)
+    trace = ROOT/'experiments/traces'/('subpasses' if args.output.name=='results-subpasses' else args.output.name);trace.parent.mkdir(parents=True,exist_ok=True)
     env.update(CUDF_PROFILE='1',NSYS_NVTX_PROFILER_REGISTER_ONLY='0')
     command = [str(args.nsys),'profile','--trace=cuda-sw,nvtx','--sample=none','--cpuctxsw=none',
                '--capture-range=nvtx','--nvtx-capture=measured','--capture-range-end=stop',
@@ -187,13 +194,13 @@ def main():
            f"{fixture['rows']:,} rows; {fixture['row_groups']} row groups; three selected integer columns; ZSTD level 3; 1 MiB page target.",
            f"File size {fixture['file_bytes']/MiB:.1f} MiB; fixed-width decoded values alone {fixture['fixed_width_decoded_bytes']/MiB:.0f} MiB, plus validity masks.",
            f"All {len(samples)} baseline and {len(profiled)} profiled sums matched {fixture['expected_sum']:,}.",
-           f"{args.repeats} baseline rounds and {args.trace_repeats} separate traced rounds; warm cache, shuffled configs, one excluded warm-up per configuration.",
+           f"{args.repeats} baseline rounds and {args.trace_repeats} separate traced rounds; shuffled configs, one excluded warm-up per configuration; cache residency is not verified.",
            '','| Pass hint (MiB) | Output hint (MiB) | Input passes | Subpasses | Output chunks | Read median (ms) | Read min–max (ms) | Sum median (ms) | Total median (ms) |',
            '|---:|---:|---:|---:|---:|---:|---:|---:|---:|']
     for r in summary:
         lines.append(f"| {r['pass_limit_mib']} | {r['chunk_limit_mib']} | {r['input_passes']} | {r['subpasses']} | {r['traced_output_chunks']} | {r['read_ms_median']:.2f} | {r['read_ms_min']:.2f}–{r['read_ms_max']:.2f} | {r['sum_ms_median']:.2f} | {r['total_ms_median']:.2f} |")
     lines += ['', 'Zero means no limit. Both parameters are hints, not strict caps on GPU memory.',
-              'Pass sweep: output hint is 0 (unlimited). Output sweep: pass hint fixed at 64 MiB.',
+              f'Pass sweep: output hint is 0 (unlimited). Output sweep: pass hint fixed at {args.output_pass_mib} MiB.',
               'Read time sums synchronized constructor, has_next and read_chunk calls. has_next can prepare/decompress data and must be timed.',
               'Sum time includes per-output-chunk GPU sum and scalar transfer. Total also includes buffer/reader destruction and loop overhead.',
               'Only amount is summed, but all three integer columns are decoded and every output table must have three columns.',

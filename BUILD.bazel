@@ -1,6 +1,6 @@
 load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
 load("@rules_conda//conda/environment:defs.bzl", "environment_glob", "lock_environments")
-load("//:sdk.bzl", "SDK_REPO", "SDK_ROOT")
+load("//:sdk.bzl", "ARROW_REPO", "SDK_REPO", "SDK_ROOT")
 
 # NVIDIA's prebuilt libcudf uses the GNU C++ ABI.
 platform(
@@ -68,6 +68,26 @@ cc_binary(
 )
 
 # Separate timing driver keeps the hello-world program minimal.
+cc_library(
+    name = "cpu_cpp_runtime",
+    srcs = ["@sdk//:lib/libstdc++.so.6", "@sdk//:lib/libgcc_s.so.1"],
+)
+
+cc_binary(
+    name = "cpu_benchmark",
+    srcs = ["cpu_benchmark.cc"],
+    copts = ["-std=c++20"],
+    features = ["-static_link_cpp_runtimes"],
+    linkstatic = False,
+    linkopts = [
+        "-pthread",
+        "-Wl,--disable-new-dtags",
+        "-Wl,-rpath,$ORIGIN/cpu_benchmark.runfiles/" + ARROW_REPO + "/pyarrow",
+        "-Wl,-rpath,$ORIGIN/cpu_benchmark.runfiles/" + SDK_REPO + "/lib",
+    ],
+    deps = ["@arrow_cpu//:arrow", ":cpu_cpp_runtime"],
+)
+
 cc_binary(
     name = "layout_benchmark",
     features = ["-static_link_cpp_runtimes"],
