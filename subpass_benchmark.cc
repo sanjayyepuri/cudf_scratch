@@ -83,8 +83,12 @@ int main(int argc, char** argv)
       if (colon == std::string::npos) throw std::invalid_argument("Expected pass_bytes:chunk_bytes");
       configs.push_back({std::stoull(arg.substr(0, colon)), std::stoull(arg.substr(colon + 1))});
     }
+    bool const single_column = std::getenv("CUDF_BENCH_SINGLE_COLUMN") != nullptr;
+    std::vector<std::string> const selected_columns = single_column
+      ? std::vector<std::string>{"amount"}
+      : std::vector<std::string>{"amount", "customer_id", "quantity"};
     auto options = cudf::io::parquet_reader_options::builder(cudf::io::source_info{argv[2]})
-                     .column_names({"amount", "customer_id", "quantity"})
+                     .column_names(selected_columns)
                      .ignore_missing_columns(false).build();
     std::mt19937 rng{42};
     bool const memory = std::getenv("CUDF_MEMORY") != nullptr;
@@ -125,7 +129,8 @@ int main(int argc, char** argv)
             rows += count; ++chunks;
             columns = result.tbl->num_columns();
             max_rows = std::max(max_rows, count);
-            if (columns != 3) throw std::runtime_error("Expected all three integer columns");
+            if (columns != static_cast<int>(selected_columns.size()))
+              throw std::runtime_error("Unexpected output column count");
             if (count == 0) throw std::runtime_error("Unexpected empty chunk in nonempty benchmark fixture");
             begin = timer::now();
             { range phase{"benchmark/sum"};
@@ -155,7 +160,7 @@ int main(int argc, char** argv)
                       << ',' << probe->device_start << ',' << probe->device_peak
                       << ',' << probe->samples << ',' << probe->failures;
           }
-          std::cout << '\n';
+          std::cout << '\n' << std::flush;
         }
       }
     }

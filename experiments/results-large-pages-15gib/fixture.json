@@ -1,0 +1,59 @@
+{
+  "rows": 2013265920,
+  "row_groups": 60,
+  "group_rows": 33554432,
+  "decoded_bytes": 16106127360,
+  "columns": 1,
+  "pass_limit": 2147483648,
+  "output_limit": 0,
+  "seed": 42,
+  "codec": "NONE",
+  "dictionary": false,
+  "page_version": "1.0",
+  "repeats": 3,
+  "warmups": 1,
+  "cache_policy": "No cache flush or residency guarantee; 15 GiB files exceed available host RAM. Excluded warm-up is not a warm-cache claim.",
+  "expected_sum": 10065327315400,
+  "layouts": [
+    {
+      "file": "/tmp/cudf-large-pages/page16384.parquet",
+      "page_target_bytes": 16384,
+      "data_pages": 983040,
+      "pages_per_chunk": 16384,
+      "pages_per_chunk_max": 16384,
+      "file_bytes": 16136606927
+    },
+    {
+      "file": "/tmp/cudf-large-pages/page65536.parquet",
+      "page_target_bytes": 65536,
+      "data_pages": 245760,
+      "pages_per_chunk": 4096,
+      "pages_per_chunk_max": 4096,
+      "file_bytes": 16114242707
+    },
+    {
+      "file": "/tmp/cudf-large-pages/page262144.parquet",
+      "page_target_bytes": 262144,
+      "data_pages": 61440,
+      "pages_per_chunk": 1024,
+      "pages_per_chunk_max": 1024,
+      "file_bytes": 16108160147
+    },
+    {
+      "file": "/tmp/cudf-large-pages/page1048576.parquet",
+      "page_target_bytes": 1048576,
+      "data_pages": 15360,
+      "pages_per_chunk": 256,
+      "pages_per_chunk_max": 256,
+      "file_bytes": 16106670227
+    },
+    {
+      "file": "/tmp/cudf-large-pages/page16777216.parquet",
+      "page_target_bytes": 16777216,
+      "data_pages": 960,
+      "pages_per_chunk": 16,
+      "pages_per_chunk_max": 16,
+      "file_bytes": 16106168087
+    }
+  ]
+}

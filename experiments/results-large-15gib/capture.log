@@ -1,0 +1,64 @@
+pass_limit,chunk_limit,iteration,rows,sum,columns,output_chunks,max_chunk_rows,read_ms,sum_ms,total_ms
+268435456,0,1,805306368,40264940585830,3,288,4063232,10677.7,86.1811,10972.3
+536870912,0,1,805306368,40264940585830,3,144,7995392,6779.54,55.5582,6969.1
+1073741824,0,1,805306368,40264940585830,3,64,15335424,4611.29,28.0979,4759.02
+8589934592,0,1,805306368,40264940585830,3,8,147062784,3339.07,10.4459,3475.41
+2147483648,0,1,805306368,40264940585830,3,31,30146560,3762.6,17.1145,3924.95
+4294967296,0,1,805306368,40264940585830,3,15,61734912,3525.12,12.2189,3675.64
+Capture range started in the application.
+Capture range ended in the application.
+Generating '/tmp/nsys-sanjay/nsys-report-75cc.qdstrm'
+
+[1/1] [0%                          ] results-large-15gib.nsys-repProcessing events...
+
+[1/1] [0%                          ] results-large-15gib.nsys-rep
+[1/1] [1%                          ] results-large-15gib.nsys-rep
+[1/1] [2%                          ] results-large-15gib.nsys-rep
+[1/1] [5%                          ] results-large-15gib.nsys-rep
+[1/1] [6%                          ] results-large-15gib.nsys-rep
+[1/1] [7%                          ] results-large-15gib.nsys-rep
+[1/1] [8%                          ] results-large-15gib.nsys-rep
+[1/1] [9%                          ] results-large-15gib.nsys-rep
+[1/1] [10%                         ] results-large-15gib.nsys-rep
+[1/1] [11%                         ] results-large-15gib.nsys-rep
+[1/1] [12%                         ] results-large-15gib.nsys-rep
+[1/1] [13%                         ] results-large-15gib.nsys-rep
+[1/1] [14%                         ] results-large-15gib.nsys-rep
+[1/1] [=15%                        ] results-large-15gib.nsys-rep
+[1/1] [=16%                        ] results-large-15gib.nsys-rep
+[1/1] [=17%                        ] results-large-15gib.nsys-rep
+[1/1] [==18%                       ] results-large-15gib.nsys-rep
+[1/1] [==19%                       ] results-large-15gib.nsys-rep
+[1/1] [==20%                       ] results-large-15gib.nsys-rep
+[1/1] [============56%             ] results-large-15gib.nsys-rep
+[1/1] [==================75%       ] results-large-15gib.nsys-rep
+[1/1] [=======================96%  ] results-large-15gib.nsys-rep
+[1/1] [========================98% ] results-large-15gib.nsys-rep
+[1/1] [========================100%] results-large-15gib.nsys-rep
+[1/1] [========================100%] results-large-15gib.nsys-rep
+Generated:
+	/mnt/c/users/sanja/documents/codex/2026-10-17/i-qwo/outputs/cudf-parquet-hello/experiments/traces/results-large-15gib.nsys-rep
+begin warmup:536870912:0:0
+done warmup:536870912:0:0 rows=805306368 chunks=144 ms=7687.71
+begin warmup:2147483648:0:0
+done warmup:2147483648:0:0 rows=805306368 chunks=31 ms=3949.45
+begin warmup:1073741824:0:0
+done warmup:1073741824:0:0 rows=805306368 chunks=64 ms=4710
+begin warmup:268435456:0:0
+done warmup:268435456:0:0 rows=805306368 chunks=288 ms=10768.2
+begin warmup:8589934592:0:0
+done warmup:8589934592:0:0 rows=805306368 chunks=8 ms=3491.32
+begin warmup:4294967296:0:0
+done warmup:4294967296:0:0 rows=805306368 chunks=15 ms=3766.59
+begin sample:268435456:0:1
+done sample:268435456:0:1 rows=805306368 chunks=288 ms=10972.3
+begin sample:536870912:0:1
+done sample:536870912:0:1 rows=805306368 chunks=144 ms=6969.1
+begin sample:1073741824:0:1
+done sample:1073741824:0:1 rows=805306368 chunks=64 ms=4759.02
+begin sample:8589934592:0:1
+done sample:8589934592:0:1 rows=805306368 chunks=8 ms=3475.41
+begin sample:2147483648:0:1
+done sample:2147483648:0:1 rows=805306368 chunks=31 ms=3924.95
+begin sample:4294967296:0:1
+done sample:4294967296:0:1 rows=805306368 chunks=15 ms=3675.64

@@ -1,0 +1,8 @@
+begin warmup:2147483648:0:0
+done warmup:2147483648:0:0 rows=2013265920 chunks=30 ms=6913.59
+begin sample:2147483648:0:1
+done sample:2147483648:0:1 rows=2013265920 chunks=30 ms=6891.9
+begin sample:2147483648:0:2
+done sample:2147483648:0:2 rows=2013265920 chunks=30 ms=6882.03
+begin sample:2147483648:0:3
+done sample:2147483648:0:3 rows=2013265920 chunks=30 ms=7001.24

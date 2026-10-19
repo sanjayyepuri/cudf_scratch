@@ -1,0 +1,48 @@
+begin warmup:536870912:0:0
+done warmup:536870912:0:0 rows=805306368 chunks=144 ms=7173.4
+begin warmup:2147483648:0:0
+done warmup:2147483648:0:0 rows=805306368 chunks=31 ms=3872.01
+begin warmup:1073741824:0:0
+done warmup:1073741824:0:0 rows=805306368 chunks=64 ms=4670.54
+begin warmup:268435456:0:0
+done warmup:268435456:0:0 rows=805306368 chunks=288 ms=10585.1
+begin warmup:8589934592:0:0
+done warmup:8589934592:0:0 rows=805306368 chunks=8 ms=3671.72
+begin warmup:4294967296:0:0
+done warmup:4294967296:0:0 rows=805306368 chunks=15 ms=3590.38
+begin sample:268435456:0:1
+done sample:268435456:0:1 rows=805306368 chunks=288 ms=10558.6
+begin sample:536870912:0:1
+done sample:536870912:0:1 rows=805306368 chunks=144 ms=6822.12
+begin sample:1073741824:0:1
+done sample:1073741824:0:1 rows=805306368 chunks=64 ms=4654.69
+begin sample:8589934592:0:1
+done sample:8589934592:0:1 rows=805306368 chunks=8 ms=3488.38
+begin sample:2147483648:0:1
+done sample:2147483648:0:1 rows=805306368 chunks=31 ms=3850.5
+begin sample:4294967296:0:1
+done sample:4294967296:0:1 rows=805306368 chunks=15 ms=3588.53
+begin sample:2147483648:0:2
+done sample:2147483648:0:2 rows=805306368 chunks=31 ms=3858.27
+begin sample:1073741824:0:2
+done sample:1073741824:0:2 rows=805306368 chunks=64 ms=4707.38
+begin sample:536870912:0:2
+done sample:536870912:0:2 rows=805306368 chunks=144 ms=6855.23
+begin sample:8589934592:0:2
+done sample:8589934592:0:2 rows=805306368 chunks=8 ms=3454.61
+begin sample:4294967296:0:2
+done sample:4294967296:0:2 rows=805306368 chunks=15 ms=3576.82
+begin sample:268435456:0:2
+done sample:268435456:0:2 rows=805306368 chunks=288 ms=10676.2
+begin sample:4294967296:0:3
+done sample:4294967296:0:3 rows=805306368 chunks=15 ms=3580.63
+begin sample:8589934592:0:3
+done sample:8589934592:0:3 rows=805306368 chunks=8 ms=3482.58
+begin sample:268435456:0:3
+done sample:268435456:0:3 rows=805306368 chunks=288 ms=10633.4
+begin sample:2147483648:0:3
+done sample:2147483648:0:3 rows=805306368 chunks=31 ms=3834.75
+begin sample:536870912:0:3
+done sample:536870912:0:3 rows=805306368 chunks=144 ms=6820.62
+begin sample:1073741824:0:3
+done sample:1073741824:0:3 rows=805306368 chunks=64 ms=4706.61

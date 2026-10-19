@@ -1,0 +1,34 @@
+pass_limit,chunk_limit,iteration,rows,sum,columns,output_chunks,max_chunk_rows,read_ms,sum_ms,total_ms
+2147483648,0,1,2013265920,10065327315400,1,30,67108864,6917.29,55.9182,7096.17
+Capture range started in the application.
+Capture range ended in the application.
+Generating '/tmp/nsys-sanjay/nsys-report-35d9.qdstrm'
+
+[1/1] [0%                          ] large-page1048576.nsys-repProcessing events...
+
+[1/1] [0%                          ] large-page1048576.nsys-rep
+[1/1] [1%                          ] large-page1048576.nsys-rep
+[1/1] [2%                          ] large-page1048576.nsys-rep
+[1/1] [5%                          ] large-page1048576.nsys-rep
+[1/1] [6%                          ] large-page1048576.nsys-rep
+[1/1] [7%                          ] large-page1048576.nsys-rep
+[1/1] [8%                          ] large-page1048576.nsys-rep
+[1/1] [10%                         ] large-page1048576.nsys-rep
+[1/1] [11%                         ] large-page1048576.nsys-rep
+[1/1] [12%                         ] large-page1048576.nsys-rep
+[1/1] [13%                         ] large-page1048576.nsys-rep
+[1/1] [=16%                        ] large-page1048576.nsys-rep
+[1/1] [==19%                       ] large-page1048576.nsys-rep
+[1/1] [==20%                       ] large-page1048576.nsys-rep
+[1/1] [======34%                   ] large-page1048576.nsys-rep
+[1/1] [==============64%           ] large-page1048576.nsys-rep
+[1/1] [=======================96%  ] large-page1048576.nsys-rep
+[1/1] [========================98% ] large-page1048576.nsys-rep
+[1/1] [========================100%] large-page1048576.nsys-rep
+[1/1] [========================100%] large-page1048576.nsys-rep
+Generated:
+	/mnt/c/users/sanja/documents/codex/2026-10-17/i-qwo/outputs/cudf-parquet-hello/experiments/traces/large-page1048576.nsys-rep
+begin warmup:2147483648:0:0
+done warmup:2147483648:0:0 rows=2013265920 chunks=30 ms=6911.34
+begin sample:2147483648:0:1
+done sample:2147483648:0:1 rows=2013265920 chunks=30 ms=7096.17

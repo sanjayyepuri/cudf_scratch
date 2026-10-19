@@ -241,3 +241,13 @@ gzip -dk experiments/traces/*.gz
 
 This keeps the archives and recreates the original Nsight reports and SQLite
 exports. The experiment scripts also regenerate the uncompressed captures.
+
+## 15 GiB article refresh
+
+[Large-scale methodology and commands](LARGE_SCALE.md) describe the compressed
+memory-hint sweep and uncompressed Page-size sweep. Both contain 15 GiB of decoded
+values; compressed disk size is smaller. New results are written separately under
+`results-large-15gib/` and `results-large-pages-15gib/`, preserving the original runs.
+The large Page study uses a bounded chunked reader rather than the original
+whole-file API; compare settings within a workload instead of treating absolute
+latency across scales as an isolated size effect.

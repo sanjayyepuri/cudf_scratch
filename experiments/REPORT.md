@@ -297,3 +297,35 @@ Reproduce after building the updated benchmark:
 The script preserves the original baseline and trace outputs. Use
 `--analyze-only` to regenerate this follow-up's report and figure from saved
 memory samples, without GPU work. [Setup and measurement details](README.md#gpu-memory-follow-up).
+
+## 15 GiB refresh
+
+The [large-scale follow-up](LARGE_SCALE.md) preserves the original results and
+adds 15 GiB decoded datasets. The primary compressed sweep uses pass hints from
+256 MiB through 8 GiB, rather than treating 16 MiB as a practical default.
+
+A 2 GiB hint read the file in **3.690 s** with **2,044.34 MiB** peak live RMM
+allocations; 8 GiB took **3.348 s** at **8,189.96 MiB**. The roughly 9% reader-time
+improvement required about four times the peak allocation. Both input-pass and
+subpass counts change, so their individual costs are not isolated.
+
+The uncompressed Page sweep uses 60 Row Groups and a fixed 2 GiB pass hint.
+16 MiB Pages had the lowest recorded median (**6.694 s**), with overlapping
+observed ranges for 256 KiB and 1 MiB Pages. Tiny 16 KiB Pages took **9.792 s**.
+Unlike the original whole-file experiment, the new reads use **30 input passes,
+30 subpasses and 30 decoder launches**. The decoder grids range from 32,768 blocks
+for tiny Pages to 32 for 16 MiB Pages. Reader kernel counts are 1,230 for the two
+smallest Page targets and 1,020 for the others; no overlapping reader kernels were
+observed. The one-block-per-Page mapping was checked by summing decoder grids
+against actual Parquet Page counts.
+
+All **56 primary measured reads** passed amount-sum, row-count and selected-column
+checks. Two separate memory rounds per configuration returned to zero tracked
+live bytes. The earlier small-hint diagnostic's 15 completed timing reads are
+also preserved; its interrupted trace is not used. Read timings, memory peaks,
+and traces come from separate runs. Page files exceed available host RAM, so
+excluded warm-ups do not establish a warm filesystem cache.
+
+- [Compressed timing and trace results](results-large-15gib/report.md)
+- [Memory results](results-large-15gib/memory-report.md)
+- [Page-size results and figure](results-large-pages-15gib/report.md)
